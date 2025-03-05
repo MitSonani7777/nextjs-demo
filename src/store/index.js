@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistMiddleware } from './middleware/persistMiddleware';
+import { persistMiddleware } from './middleware/persistMiddelware';
+import authReducer from './slices/auth/authSlice'
+
 
 // Load persisted auth state
 const persistedAuthState = typeof window !== 'undefined'
@@ -7,7 +9,9 @@ const persistedAuthState = typeof window !== 'undefined'
     : undefined;
 
 export const store = configureStore({
-    reducer: {},
+    reducer: {
+        auth: authReducer
+    },
     preloadedState: {
         auth: persistedAuthState
     },
